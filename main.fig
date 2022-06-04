@@ -1,2 +1,3 @@
-out-'hi';
+var-mario = 'hi';
+varout-hi;
 stop;
