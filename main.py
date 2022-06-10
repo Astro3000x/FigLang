@@ -14,13 +14,53 @@ while 1:
    
    fig = fig.replace(f"var-{varname} = {f4};", "")
  
- if "/-" in fig or '/-' in fig:
-    f1 = fig.replace("/-", "")
     
     
-    
-    
-    fig = fig.replace("/-"+f1, "")
+ if "when-" in fig:
+   f1 = fig.replace("when-", "")
+   f2 = f1.split("(")
+   f3 = f2[1].split(')')
+   f4 = f3[0].split(" ")
+   v1 = f1.split("[")
+   v2 = v1[1].split("]")
+   
+   if f4[1] == '==':
+     if f4[0] == f4[2]:
+       if "out-'" in v2[0] or 'out-"' in v2[0]:
+        f1 = v2[0].replace("out-", "")
+        f2 = f1.replace("'", "")
+        f3 = f2.replace('"', '')
+        f4 = f3.split(";")
+        print(f4[0])
+        fig = fig.replace("out-"+f1, "")
+       if "var-" in fig:
+        f1 = fig.replace("var-", "")
+        f2 = f1.split(" = ")
+        varname = f2[0]
+        f3 = f2[1].split(";")
+        f4 = f3[0]
+        varvalue = f4
+        variables[varname] = varvalue
+        fig = fig.replace(f"var-{varname} = {f4};", "")
+       
+   elif f4[1] == '!=':
+     if f4[0] != f4[2]:
+       if "out-'" in v2[0] or 'out-"' in v2[0]:
+        f1 = v2[0].replace("out-", "")
+        f2 = f1.replace("'", "")
+        f3 = f2.replace('"', '')
+        f4 = f3.split(";")
+        print(f4[0])
+        fig = fig.replace("out-"+f1, "")
+       if "var-" in fig:
+         f1 = fig.replace("var-", "")
+         f2 = f1.split(" = ")
+         varname = f2[0]
+         f3 = f2[1].split(";")
+         f4 = f3[0]
+         varvalue = f4
+         variables[varname] = varvalue
+         fig = fig.replace(f"var-{varname} = {f4};", "")
  if "out-'" in fig or 'out-"' in fig:
    f1 = fig.replace("out-", "")
    f2 = f1.replace("'", "")
@@ -36,7 +76,9 @@ while 1:
    v4 = vvv.replace("'", "")
    v5 = v4.replace('"', '')
    vartoprint = variables[v5]
-   print(vartoprint)
+   v7 = vartoprint.replace("'", "")
+   v8 = v7.replace('"', '')
+   print(v8)
    fig = fig.replace("outvar-"+f1, "")
   
  if "in-'" in fig:
