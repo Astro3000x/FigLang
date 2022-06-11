@@ -1,2 +1,2 @@
-when-("wasp" == "wasp")[out-"seed";]
+for-(10)[out-'seed';]
 stop;

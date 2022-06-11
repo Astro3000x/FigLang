@@ -15,7 +15,34 @@ while 1:
    fig = fig.replace(f"var-{varname} = {f4};", "")
  
     
-    
+ if "for-" in fig:
+   
+   f1 = fig.replace("for-", "")
+   f2 = f1.split("(")
+   f3 = f2[1].split(')')
+   f4 = f3[0].split(" ")
+   v1 = f1.split("[")
+   v2 = v1[1].split("]")
+   for i in range(0, int(f3[0])):
+     
+      if "out-'" in v2[0] or 'out-"' in v2[0]:
+        f1 = v2[0].replace("out-", "")
+        f2 = f1.replace("'", "")
+        f3 = f2.replace('"', '')
+        f4 = f3.split(";")
+        print(f4[0])
+        fig = fig.replace("out-"+f1, "")
+      if "var-" in fig:
+        f1 = fig.replace("var-", "")
+        f2 = f1.split(" = ")
+        varname = f2[0]
+        f3 = f2[1].split(";")
+        f4 = f3[0]
+        varvalue = f4
+        variables[varname] = varvalue
+        fig = fig.replace(f"var-{varname} = {f4};", "")
+   
+   
  if "when-" in fig:
    f1 = fig.replace("when-", "")
    f2 = f1.split("(")
