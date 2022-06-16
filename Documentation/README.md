@@ -6,8 +6,10 @@
 
 `var-wasp = "seed";` Declare a variable, String, Integer, Float, and Boolean currently supported.
 
-`outvar-wasp;` Print a variable.
+`out-wasp;` Print a variable.
 
 `when-("wasp" == "wasp")[out-"seed";]` Use an if statement.
 
 `for-(10)[out-'seed']` Use a for loop.
+
+`math-3*3;` Use Math.

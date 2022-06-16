@@ -95,6 +95,18 @@ while 1:
    f4 = f3.split(";")
    print(f4[0])
    fig = fig.replace("out-"+f1, "")
+ elif "out-" in fig:
+   f1 = fig.replace("out-", "")
+   f4 = f1.split(";")
+   vv = f4[0]
+   vvv = vv.replace("\n", "")
+   v4 = vvv.replace("'", "")
+   v5 = v4.replace('"', '')
+   vartoprint = variables[v5]
+   v7 = vartoprint.replace("'", "")
+   v8 = v7.replace('"', '')
+   print(v8)
+   fig = fig.replace("outvar-"+f1, "")
  if "outvar-" in fig:
    f1 = fig.replace("outvar-", "")
    f4 = f1.split(";")
@@ -114,6 +126,36 @@ while 1:
     fig = fig.replace("in-'"+f2[0]+"';", '')
     inp = input(f2[0])
     print(inp)
+ if "math-" in fig:
+   f1 = fig.split("math-")
+   
+   f2 = f1[1].split(";")
+   f3 = f2[0]
+   
+   if "+" in f3:
+     f4 = f3.split("+")
+     num1 = float(f4[0])
+     num2 = float(f4[1])
+     print(num1+num2)
+     fig = fig.replace(f"math-{f1[1]}", "")
+   elif "-" in f3:
+     f4 = f3.split("-")
+     num1 = float(f4[0])
+     num2 = float(f4[1])
+     print(num1-num2)
+     fig = fig.replace(f"math-{f1[1]}", "")
+   elif "*" in f3:
+     f4 = f3.split("*")
+     num1 = float(f4[0])
+     num2 = float(f4[1])
+     print(num1*num2)
+     fig = fig.replace(f"math-{f1[1]}", "")
+   elif "/" in f3:
+     f4 = f3.split("/")
+     num1 = float(f4[0])
+     num2 = float(f4[1])
+     print(num1/num2)
+     fig = fig.replace(f"math-{f1[1]}", "")
  if "stop;" in fig:
     print("Exit Status 1")
     
