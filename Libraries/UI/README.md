@@ -4,4 +4,4 @@
 
 `import-ui;` Import The UI Library
 
-`web-start-'Hello World';` Start The UI With Chosen Text
+`ui-start-'Hello World';` Start The UI With Chosen Text

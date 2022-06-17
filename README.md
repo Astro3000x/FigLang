@@ -10,3 +10,7 @@ To Use Fig, clone this repo and write your code in main.fig
 [Libraries](Libraries/README.md)
 
 a fig is a fruit (wow bet you didn't know that, huh?)
+
+
+
+**Note: This Is All Original Work By Astro3000**

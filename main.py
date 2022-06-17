@@ -4,6 +4,7 @@ variables = {}
 discord = False
 web = False
 tkinter = False
+rand = False
 while 1:
  if "import-" in fig:
    f1 = fig.replace("import-", "")
@@ -18,6 +19,9 @@ while 1:
    elif f4 == "ui":
      from tkinter import *
      tkinter = True
+   elif f4 == "random":
+     import random
+     rand = True
    else:
      print(f"Error: Library {f4} not found")
    fig = fig.replace(f"import-{f4};", "")
@@ -238,7 +242,15 @@ while 1:
    else:
      print("Error: Library Ui Not Imported")
    fig = fig.replace(f"web-start-{f2[0]};", "")
- 
+ if "randint-" in fig:
+   f1 = fig.replace("randint-", "")
+   f2 = f1.split("(")
+   f3 = f2[1].split(')')
+   f4 = f3[0].split(", ")
+   if rand == True:
+     print(random.randint(int(f4[0]), int(f4[1])))
+   else:
+     print("Error: Library Random Not Imported")
  if "stop;" in fig:
     print("Exit Status 1")
     
