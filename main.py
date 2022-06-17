@@ -1,8 +1,22 @@
 f = open("main.fig", "r")
 fig = str(f.read())
 variables = {}
+discord = False
+web = False
 while 1:
-  
+ if "import-" in fig:
+   f1 = fig.replace("import-", "")
+   f2 = f1.split(";")
+   f4 = f2[0]
+   if f4 == "discord":
+     discord = True
+     import discord
+   elif f4 == "web":
+     web = True
+     from flask import Flask
+   else:
+     print(f"Error: Library {f4} not found")
+   fig = fig.replace(f"import-{f4};", "")
  if "var-" in fig:
    f1 = fig.replace("var-", "")
    f2 = f1.split(" = ")
@@ -69,7 +83,21 @@ while 1:
         varvalue = f4
         variables[varname] = varvalue
         fig = fig.replace(f"var-{varname} = {f4};", "")
-       
+       elif "out-" in v2[0]:
+        f1 = v2[0].replace("out-", "")
+        f4 = f1.split(";")
+        vv = f4[0]
+        vvv = vv.replace("\n", "")
+        v4 = vvv.replace("'", "")
+        v5 = v4.replace('"', '')
+        if v5 in variables:
+         vartoprint = variables[v5]
+         v7 = vartoprint.replace("'", "")
+         v8 = v7.replace('"', '')
+         print(v8)
+        else:
+         print(f"Error: Variable {v5} Not Found")
+        fig = fig.replace("out-"+f1, "")
    elif f4[1] == '!=':
      if f4[0] != f4[2]:
        if "out-'" in v2[0] or 'out-"' in v2[0]:
@@ -78,6 +106,21 @@ while 1:
         f3 = f2.replace('"', '')
         f4 = f3.split(";")
         print(f4[0])
+        fig = fig.replace("out-"+f1, "")
+       elif "out-" in v2[0]:
+        f1 = v2[0].replace("out-", "")
+        f4 = f1.split(";")
+        vv = f4[0]
+        vvv = vv.replace("\n", "")
+        v4 = vvv.replace("'", "")
+        v5 = v4.replace('"', '')
+        if v5 in variables:
+         vartoprint = variables[v5]
+         v7 = vartoprint.replace("'", "")
+         v8 = v7.replace('"', '')
+         print(v8)
+        else:
+         print(f"Error: Variable {v5} Not Found")
         fig = fig.replace("out-"+f1, "")
        if "var-" in fig:
          f1 = fig.replace("var-", "")
@@ -102,10 +145,13 @@ while 1:
    vvv = vv.replace("\n", "")
    v4 = vvv.replace("'", "")
    v5 = v4.replace('"', '')
-   vartoprint = variables[v5]
-   v7 = vartoprint.replace("'", "")
-   v8 = v7.replace('"', '')
-   print(v8)
+   if v5 in variables:
+     vartoprint = variables[v5]
+     v7 = vartoprint.replace("'", "")
+     v8 = v7.replace('"', '')
+     print(v8)
+   else:
+     print(f"Error: Variable {v5} Not Found")
    fig = fig.replace("outvar-"+f1, "")
  if "outvar-" in fig:
    f1 = fig.replace("outvar-", "")
@@ -156,6 +202,22 @@ while 1:
      num2 = float(f4[1])
      print(num1/num2)
      fig = fig.replace(f"math-{f1[1]}", "")
+ if "web-start" in fig:
+   f1 = fig.split("web-start-")
+   f2 = f1[1].split(";")
+   
+   if web == True:
+     from flask import Flask
+     app = Flask('app')
+
+     @app.route('/')
+     def hello_world():
+       return f"{f2[0]}"
+
+     app.run(host='0.0.0.0', port=8080)
+   else:
+     print("Error: Library Web Not Imported")
+   fig = fig.replace(f"web-start-{f2[0]};", "")
  if "stop;" in fig:
     print("Exit Status 1")
     

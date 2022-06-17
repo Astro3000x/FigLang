@@ -12,4 +12,4 @@
 
 `for-(10)[out-'seed']` Use a for loop.
 
-`math-3*3;` Use Math.
+`math-3*3;` Use Math. 
