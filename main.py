@@ -3,6 +3,7 @@ fig = str(f.read())
 variables = {}
 discord = False
 web = False
+tkinter = False
 while 1:
  if "import-" in fig:
    f1 = fig.replace("import-", "")
@@ -14,6 +15,9 @@ while 1:
    elif f4 == "web":
      web = True
      from flask import Flask
+   elif f4 == "ui":
+     from tkinter import *
+     tkinter = True
    else:
      print(f"Error: Library {f4} not found")
    fig = fig.replace(f"import-{f4};", "")
@@ -205,7 +209,8 @@ while 1:
  if "web-start" in fig:
    f1 = fig.split("web-start-")
    f2 = f1[1].split(";")
-   
+   f2[0] = f2[0].replace("'", "")
+   f2[0] = f2[0].replace('"', '')
    if web == True:
      from flask import Flask
      app = Flask('app')
@@ -218,6 +223,22 @@ while 1:
    else:
      print("Error: Library Web Not Imported")
    fig = fig.replace(f"web-start-{f2[0]};", "")
+ if "ui-start" in fig:
+   f1 = fig.split("ui-start-")
+   f2 = f1[1].split(";")
+   f2[0] = f2[0].replace("'", "")
+   f2[0] = f2[0].replace('"', '')
+   if tkinter == True:
+     tk = Tk()
+     tk.geometry("300x300")
+     canvas = Canvas(tk, width=300, height=300)
+     canvas.pack()
+     canvas.create_text(150, 10, text=f'{f2[0]}')
+     tk.title("UI")
+   else:
+     print("Error: Library Ui Not Imported")
+   fig = fig.replace(f"web-start-{f2[0]};", "")
+ 
  if "stop;" in fig:
     print("Exit Status 1")
     
