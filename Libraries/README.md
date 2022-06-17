@@ -1,5 +1,5 @@
 ## Fig Libraries ##
 
-[Web Library](Web-Server)
+[Web Library](Web-Server/README.md)
 
-[UI](UI)
+[UI](UI/README.md)
