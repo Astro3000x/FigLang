@@ -251,6 +251,15 @@ while 1:
      print(random.randint(int(f4[0]), int(f4[1])))
    else:
      print("Error: Library Random Not Imported")
+ if "randfloat-" in fig:
+   f1 = fig.replace("randfloat-", "")
+   f2 = f1.split("(")
+   f3 = f2[1].split(')')
+   f4 = f3[0].split(", ")
+   if rand == True:
+     print(random.uniform(float(f4[0]), float(f4[1])))
+   else:
+     print("Error: Library Random Not Imported")
  if "stop;" in fig:
     print("Exit Status 1")
     

@@ -5,3 +5,5 @@
 `import-random` Import The Random Library
 
 `randint-(1, 5)` Get A Random Integer
+
+`randfloat-(1, 5)` Get A Random Float
