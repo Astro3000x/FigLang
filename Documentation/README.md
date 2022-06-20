@@ -13,3 +13,5 @@
 `for-(10)[out-'seed']` Use a for loop.
 
 `math-3*3;` Use Math. 
+
+`sleep(x)` Sleep the program for x seconds.

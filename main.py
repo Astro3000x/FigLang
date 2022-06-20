@@ -1,10 +1,12 @@
 f = open("main.fig", "r")
 fig = str(f.read())
+import time
 variables = {}
 disc = False
 web = False
 tkinter = False
 rand = False
+dtime = False
 while 1:
  if "import-" in fig:
    f1 = fig.replace("import-", "")
@@ -22,9 +24,18 @@ while 1:
    elif f4 == "random":
      import random
      rand = True
+   elif f4 == "time":
+     import time
+     dtime = True
    else:
      print(f"Error: Library {f4} not found")
    fig = fig.replace(f"import-{f4};", "")
+ if "sleep-" in fig:
+   f1 = fig.replace("randfloat-", "")
+   f2 = f1.split("(")
+   f3 = f2[1].split(')')
+
+   time.sleep(int(f3[0]))
  if "var-" in fig:
    f1 = fig.replace("var-", "")
    f2 = f1.split(" = ")
@@ -143,8 +154,9 @@ while 1:
    f1 = fig.replace("out-", "")
    f2 = f1.replace("'", "")
    f3 = f2.replace('"', '')
-   f4 = f3.split(";")
-   print(f4[0])
+   f4 = f3.replace("\n", "")
+   f5 = f4.split(";")
+   print(f5[0])
    fig = fig.replace("out-"+f1, "")
  elif "out-" in fig:
    f1 = fig.replace("out-", "")
@@ -293,6 +305,13 @@ while 1:
      print(random.uniform(float(f4[0]), float(f4[1])))
    else:
      print("Error: Library Random Not Imported")
+ if "randbool;" in fig:
+   
+   if rand == True:
+     print(bool(random.getrandbits(1)))
+   else:
+     print("Error: Library Random Not Imported")
+
  if "stop;" in fig:
     print("Exit Status 1")
     

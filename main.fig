@@ -1,4 +1,3 @@
-import-discord;
-discord-config;
-client-command-hi[hello there]
-client-run-OTg4MjA5MzAzNDU2NDUyNjg4.GCYfac.M36940J2CgnUGwepFSS_Fd51agWkeXSi4YelZE;
+
+out-"hi";
+sleep-(5)
