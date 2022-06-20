@@ -5,6 +5,8 @@
 
 To Use Fig, clone this repo and write your code in main.fig
 
+[More Stuff](https://figlang.astro3000.dev)
+
 [Documentation](Documentation/README.md)
 
 [Libraries](/Libraries)

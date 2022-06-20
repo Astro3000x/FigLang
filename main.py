@@ -1,7 +1,7 @@
 f = open("main.fig", "r")
 fig = str(f.read())
 variables = {}
-discord = False
+disc = False
 web = False
 tkinter = False
 rand = False
@@ -11,7 +11,7 @@ while 1:
    f2 = f1.split(";")
    f4 = f2[0]
    if f4 == "discord":
-     discord = True
+     disc = True
      import discord
    elif f4 == "web":
      web = True
@@ -227,7 +227,7 @@ while 1:
    else:
      print("Error: Library Web Not Imported")
    fig = fig.replace(f"web-start-{f2[0]};", "")
- if "ui-start" in fig:
+ if "ui-start-" in fig:
    f1 = fig.split("ui-start-")
    f2 = f1[1].split(";")
    f2[0] = f2[0].replace("'", "")
@@ -241,7 +241,40 @@ while 1:
      tk.title("UI")
    else:
      print("Error: Library Ui Not Imported")
-   fig = fig.replace(f"web-start-{f2[0]};", "")
+ if "discord-config" in fig:
+   f1 = fig.split("discord-config")
+   f2 = f1[1].split(";")
+   f2[0] = f2[0].replace("'", "")
+   f2[0] = f2[0].replace('"', '')
+   if disc == True:
+     client = discord.Client()
+     
+   else:
+     print("Error: Library Discord Not Imported")
+   fig = fig.replace(f"discord-config;", "")
+ if "client-command-" in fig:
+   f1 = fig.replace("client-command-", "")
+   v1 = f1.split("[")
+   v2 = v1[1].split("]")
+   cmdpart = v1[0].replace("\n", "")
+   @client.event
+   async def on_message(message):
+    user_message = str(message.content)
+    if user_message.lower() == f'{cmdpart}':
+      await message.channel.send(f'{v2[0]}')
+
+   fig = fig.replace(f"client-command-{cmdpart}[{v2[0]}]", "")
+ if "client-run-" in fig:
+   f1 = fig.split("client-run-")
+   f2 = f1[1].split(";")
+   f2[0] = f2[0].replace("'", "")
+   f2[0] = f2[0].replace('"', '')
+   if disc == True:
+     print("Bot Ready")
+     client.run(f2[0])
+     
+   else:
+     print("Error: Library Discord Not Imported")
  if "randint-" in fig:
    f1 = fig.replace("randint-", "")
    f2 = f1.split("(")
