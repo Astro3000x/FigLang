@@ -27,6 +27,8 @@ while 1:
    elif f4 == "time":
      import time
      dtime = True
+   elif f4 == "requests":
+     import requests
    else:
      print(f"Error: Library {f4} not found")
    fig = fig.replace(f"import-{f4};", "")
@@ -311,7 +313,24 @@ while 1:
      print(bool(random.getrandbits(1)))
    else:
      print("Error: Library Random Not Imported")
-
+ if "random;" in fig:
+   
+   if rand == True:
+     print(random.random())
+   else:
+     print("Error: Library Random Not Imported")
+ if "request-'" in fig or 'request-"' in fig:
+   f1 = fig.replace("request-", "")
+   f2 = f1.replace("'", "")
+   f3 = f2.replace('"', '')
+   f4 = f3.replace("\n", "")
+   f5 = f4.split(";")
+   print(f5[0])
+   result = requests.get("http://"+f5[0])
+   inner = str(result.content)
+   print(inner)
+   
+   fig = fig.replace("out-"+f1, "")
  if "stop;" in fig:
     print("Exit Status 1")
     

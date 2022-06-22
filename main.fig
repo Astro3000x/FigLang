@@ -1,3 +1,2 @@
-
-out-"hi";
-sleep-(5)
+import-requests;
+request-'request-example.com';
