@@ -17,4 +17,4 @@ a fig is a fruit (wow bet you didn't know that, huh?)
 
 Contact Me @ `figlang@astro3000.dev`
 
-**Note: This Is All Original Work By Astro3000**
+**This Is All Original Work By Astro3000**
