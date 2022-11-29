@@ -14,4 +14,8 @@
 
 `math-3*3;` Use Math. 
 
-`sleep(x)` Sleep the program for x seconds.
+`sleep-(x)` Sleep the program for x seconds.
+
+`file-connect-'scratch.txt';` Connect a text file
+
+`file-out;` Spits out the context of the file in text

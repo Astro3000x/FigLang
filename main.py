@@ -33,7 +33,7 @@ while 1:
      print(f"Error: Library {f4} not found")
    fig = fig.replace(f"import-{f4};", "")
  if "sleep-" in fig:
-   f1 = fig.replace("randfloat-", "")
+   f1 = fig.replace("sleep-", "")
    f2 = f1.split("(")
    f3 = f2[1].split(')')
 
@@ -77,7 +77,7 @@ while 1:
         variables[varname] = varvalue
         fig = fig.replace(f"var-{varname} = {f4};", "")
    
-   
+
  if "when-" in fig:
    f1 = fig.replace("when-", "")
    f2 = f1.split("(")
@@ -319,6 +319,15 @@ while 1:
      print(random.random())
    else:
      print("Error: Library Random Not Imported")
+ if "file-connect-" in fig:
+   f2 = fig.split("file-connect-")
+   f3 = f2[1].split(";")
+   f4 = f3[0].replace("'", "")
+   file = open(f4, "r")
+   connectedfile = str(file.read())
+ if "file-out;" in fig:
+   print(connectedfile)
+ 
  if "request-'" in fig or 'request-"' in fig:
    f1 = fig.replace("request-", "")
    f2 = f1.replace("'", "")
